@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./form.css";
 import history from "../history";
+import Alert from "react-bootstrap/Alert";
 
 function FormComponent() {
   const [name, setName] = useState("");
   const [pwd, setPwd] = useState("");
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const [submit, setSubmit] = useState(false);
   function handleNameChange(e) {
     setName(e.target.value);
   }
@@ -28,8 +30,9 @@ function FormComponent() {
       .then(function (response) {
         console.log(response);
         clearData();
-        history.push("/");
         setLoading(false);
+        setSubmit(true);
+        history.push("/");
       });
   }
   function clearData() {
@@ -70,7 +73,7 @@ function FormComponent() {
           <span class="sr-only">Loading...</span>
         </div>
       )}
-
+      {submit && <Alert variant="success">Successfully submited</Alert>}
       {!loading && (
         <button onClick={handleSubmit} className="btn btn-primary">
           Click me

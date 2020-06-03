@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
+import MyVerticallyCenteredModal from "./modal";
+import "./home.css";
+// import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 function Home() {
   const [data, setData] = useState([]);
+  const [modalShow, setModalShow] = React.useState(false);
+
   const [requestData, setRequestData] = useState(new Date());
   useEffect(() => {
     axios
@@ -47,9 +52,23 @@ function Home() {
               <th>****{y.password.slice(-2)}</th>
               <th>{y.picture}</th>
               <th>
+                <labeL className="margin-right">
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary"
+                    onClick={() => setModalShow(true)}
+                  >
+                    Edit
+                  </button>
+                </labeL>
+                <MyVerticallyCenteredModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                />
+
                 <button
                   type="button"
-                  class="btn btn-outline-danger"
+                  className="btn btn-outline-danger"
                   onClick={() => functionDelete(y.id)}
                 >
                   Delete

@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./form/Home";
 import FormComponent from "./form/form";
-//import logo from './logo.svg';
+import logo from "./logo.svg";
 import history from "./history";
 
 import "./App.css";
@@ -13,7 +13,7 @@ function App() {
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link className="navbar-brand" to="#">
-            React-Form
+            <img src={logo} width="40" height="40" alt="react" /> React-Form
           </Link>
           <button
             className="navbar-toggler"
@@ -28,13 +28,17 @@ function App() {
           </button>
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <Link className="nav-link" to="/">
+              <li className="nav-item">
+                <Link className="nav-link" to="/" activeClassName="active">
                   Home <span className="sr-only">(current)</span>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/register">
+                <Link
+                  className="nav-link"
+                  to="/register"
+                  activeClassName="active"
+                >
                   Register
                 </Link>
               </li>
