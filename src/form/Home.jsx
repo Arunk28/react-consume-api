@@ -64,6 +64,7 @@ function Home() {
                 <MyVerticallyCenteredModal
                   show={modalShow}
                   onHide={() => setModalShow(false)}
+                  {...y}
                 />
 
                 <button
