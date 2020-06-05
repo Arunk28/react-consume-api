@@ -6,6 +6,7 @@ import axios from "axios";
 function Home() {
   const [data, setData] = useState([]);
   const [modalShow, setModalShow] = React.useState(false);
+  const [modalData, setModalData] = React.useState([]);
 
   const [requestData, setRequestData] = useState(new Date());
   useEffect(() => {
@@ -19,7 +20,10 @@ function Home() {
         console.log(error);
       });
   }, [requestData]);
-
+  function modalUpdate(d) {
+    setModalData(d);
+    setModalShow(true);
+  }
   function functionDelete(id) {
     axios
       .delete("http://localhost:3000/api/delete/" + id)
@@ -56,16 +60,11 @@ function Home() {
                   <button
                     type="button"
                     className="btn btn-outline-primary"
-                    onClick={() => setModalShow(true)}
+                    onClick={() => modalUpdate(y)}
                   >
                     Edit
                   </button>
                 </labeL>
-                <MyVerticallyCenteredModal
-                  show={modalShow}
-                  onHide={() => setModalShow(false)}
-                  {...y}
-                />
 
                 <button
                   type="button"
@@ -79,6 +78,11 @@ function Home() {
           ))}
         </tbody>
       </table>
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        data={modalData}
+      />
     </div>
   );
 }
